@@ -20,12 +20,20 @@ export default function DynamicHome() {
   // if (typeof window !== "undefined") return null;
 
   if (!session) {
-    return <h2>log in Please</h2>;
-  } else {
-    return <DashboardLayout />;
+    return <h2>You Are Not logged In User</h2>;
   }
+
+    return <DashboardLayout />;
 }
 
 DynamicHome.getLayout = function PageLayout(page) {
   return { page };
 };
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      session: await getSession(context)
+    },
+  }
+}
