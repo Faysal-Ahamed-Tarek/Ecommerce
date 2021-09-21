@@ -1,31 +1,29 @@
 import DashboardLayout from "./../../Component/Admin/Dashboard Layout/DashboardLayout";
 import { useSession, getSession } from "next-auth/client";
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from "react";
 
- 
 export default function DynamicHome() {
-  const [session,loading] = useSession();
-  const [Content,setContent] = useState();
+  const [session, loading] = useSession();
+  const [Content, setContent] = useState();
 
   useEffect(() => {
-    const PrivateRoute = async() => {
-      const res = await fetch('/api/dashboard');
+    const PrivateRoute = async () => {
+      const res = await fetch("/api/dashboard");
       const json = await res.json();
-      if(json.content){
-        setContent(json.content)
+      if (json.content) {
+        setContent(json.content);
       }
-    }
+    };
     PrivateRoute();
-  },[session])
+  }, [session]);
 
   // if (typeof window !== "undefined") return null;
 
-  if(!session){
-    return(
-      <h2>log in Please</h2>
-    )
+  if (!session) {
+    return <h2>log in Please</h2>;
+  } else {
+    return <DashboardLayout />;
   }
-  return <DashboardLayout />;
 }
 
 DynamicHome.getLayout = function PageLayout(page) {
