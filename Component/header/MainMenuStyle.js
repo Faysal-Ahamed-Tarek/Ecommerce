@@ -1,4 +1,5 @@
-import theme from "./../../pages/theme";
+import theme from '../../theme';
+
 export const MainMenuStyle = {
   MainMenu: {
     backgroundColor: "white",

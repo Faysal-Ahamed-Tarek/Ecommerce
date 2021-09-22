@@ -1,4 +1,4 @@
-import theme from "./../../pages/theme";
+import theme from "../../theme";
 export const SignInStyle = {
   Form: {
     width: "100%",
